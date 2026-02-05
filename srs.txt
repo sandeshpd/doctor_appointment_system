@@ -1,0 +1,67 @@
+1. Core Modules
+	A. User Management
+		> Sign up / login / logout (JWT-based authentication)
+
+		Two roles:
+			> Patient
+			> Doctor
+
+		Basic profile for each:
+			> Patient: name, email, phone
+			> Doctor: name, specialization, clinic name, availability hours
+
+	B. Appointment Management
+		Patients can:
+			> View list of available doctors
+			> View doctor details (specialization, available slots)
+			> Book appointment (choose date/time from available slots)
+			> View their booked appointments
+			> Cancel appointment
+
+		Doctors can:
+			> View their appointments
+			> Approve or reject appointments
+			> Set their available schedule (basic form)
+
+	C. Admin (optional for MVP, can be manual for now)
+			> Manage doctors and patients (add/remove/update)
+			> View all appointments (for monitoring)
+
+2. Backend (Flask)
+	Flask app structured as:
+		/auth → handles login/register/logout
+		/doctors → CRUD for doctors, fetch list
+		/appointments → booking, listing, canceling
+
+	Database (PostgreSQL)
+		Tables:
+			> users (id, name, email, password_hash, role)
+			> doctors (id, user_id, specialization, availability)
+			> appointments (id, patient_id, doctor_id, date, time, status)
+
+	JWT authentication (using flask-jwt-extended)
+	Simple validation and error handling
+
+3. Frontend (React)
+	Views
+		> Home Page – list of doctors
+		> Doctor Details Page – show doctor info + book slot
+		> Login/Register Pages
+	
+	Dashboard
+		> For Patient → show booked appointments
+		> For Doctor → show received appointments
+
+	Appointment Form – choose date/time and confirm
+	
+	State Management
+
+	Basic React Context or Redux Toolkit (optional at MVP)
+
+	Handle auth state (logged in / logged out)
+
+	API Integration
+
+	Axios for API calls (token stored in localStorage)
+
+	Basic loading and error handling
